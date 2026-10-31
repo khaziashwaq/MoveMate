@@ -1,0 +1,7 @@
+Place your Marlin Soft SQ font files here:
+- MarlinSoftSQ-Regular.woff2
+- MarlinSoftSQ-Regular.woff
+- MarlinSoftSQ-Bold.woff2
+- MarlinSoftSQ-Bold.woff
+
+These are referenced in src/app/globals.css via @font-face.

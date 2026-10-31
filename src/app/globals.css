@@ -1,0 +1,306 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Hasklig";
+  src: url("/fonts/Hasklig-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hasklig";
+  src: url("/fonts/Hasklig-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hasklig";
+  src: url("/fonts/Hasklig-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hasklig";
+  src: url("/fonts/Hasklig-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hasklig";
+  src: url("/fonts/Hasklig-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Blonkra";
+  src: url("/fonts/BlonkraRegular-vnxVy.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-gta-green: #b6f09c;
+  --color-gta-dark: #111411;
+  --color-gta-panel: #161816;
+  --color-bg-primary: #111411;
+  --color-bg-secondary: #1b1b1b;
+  --color-surface: #222222;
+  --color-surface-0: #111411;
+  --color-surface-1: #161816;
+  --color-surface-2: #1c1c1c;
+  --color-border: rgba(255, 255, 255, 0.05);
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.6);
+  --color-text-muted: #8d8d8d;
+  --color-accent: #b6f09c;
+  --color-accent-hover: #b6f09c;
+  --font-family-sans: "Hasklig", system-ui, -apple-system, sans-serif;
+  --font-family-heading: "Hasklig", system-ui, -apple-system, sans-serif;
+  --radius-card: 18px;
+  --radius-button: 12px;
+  --radius-tag: 9999px;
+}
+
+@layer base {
+  * {
+    font-family:
+      "Hasklig",
+      system-ui,
+      -apple-system,
+      sans-serif;
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: #ffffff;
+  }
+
+  ::selection {
+    background-color: #b6f09c;
+    color: #000;
+  }
+}
+
+@layer components {
+  .gta-text-shadow {
+    text-shadow:
+      0 0 10px rgba(0, 255, 136, 0.5),
+      0 0 20px rgba(0, 255, 136, 0.2);
+  }
+
+  .gta-map-container {
+    filter: none;
+  }
+
+  .gta-map-container .leaflet-tile {
+    outline: none !important;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    image-rendering: -webkit-optimize-contrast;
+    margin: -0.5px !important;
+    width: 257px !important;
+    height: 257px !important;
+  }
+
+  .gta-map-container .leaflet-tile-container {
+    will-change: transform;
+  }
+
+  .gta-map-container .leaflet-tile-pane {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .gta-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .gta-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .gta-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 136, 0.2);
+    border-radius: 2px;
+  }
+
+  .gta-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 136, 0.4);
+  }
+
+  .gta-pin-pulse .gta-marker-inner {
+    animation: pin-glow 2s ease-in-out infinite;
+  }
+}
+
+@keyframes pin-glow {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.6), 0 0 40px rgba(245, 158, 11, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(245, 158, 11, 0.9), 0 0 60px rgba(245, 158, 11, 0.4);
+  }
+}
+
+/* ═══════ GTA LANDING PAGE ═══════ */
+.gta-grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.gta-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+/* ═══════ GTA MAP MARKERS & POPUPS ═══════ */
+.gta-marker {
+  background: none !important;
+  border: none !important;
+}
+
+.gta-marker-inner {
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid #b6f09c;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+  transition: all 0.15s ease;
+}
+
+.gta-marker-inner:hover {
+  background: rgba(0, 255, 136, 0.15);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+  transform: scale(1.1);
+}
+
+.gta-pin-pulse .gta-marker-inner:hover {
+  background: rgba(245, 158, 11, 0.15);
+  box-shadow: 0 0 28px rgba(245, 158, 11, 0.8), 0 0 50px rgba(245, 158, 11, 0.3);
+  transform: scale(1.1);
+}
+
+.gta-marker-price {
+  color: #b6f09c;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.gta-marker-nav {
+  color: #b6f09c;
+  font-size: 14px;
+  margin-left: 6px;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.gta-marker-inner:hover .gta-marker-nav {
+  opacity: 1;
+}
+
+.gta-popup-container .leaflet-popup-content-wrapper {
+  background: rgba(0, 0, 0, 0.92) !important;
+  border: 2px solid #b6f09c !important;
+  border-radius: 0 !important;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3) !important;
+  padding: 0 !important;
+}
+
+.gta-popup-container .leaflet-popup-tip {
+  background: rgba(0, 0, 0, 0.92) !important;
+  border: 1px solid #b6f09c !important;
+}
+
+.gta-popup-container .leaflet-popup-content {
+  margin: 0 !important;
+}
+
+.gta-popup {
+  width: 220px;
+}
+
+.gta-popup-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.gta-popup-content {
+  padding: 8px 12px;
+}
+
+.gta-popup-title {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.gta-popup-price {
+  color: #b6f09c;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.gta-popup-category {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+
+/* ═══════ DETAIL PANE ANIMATION ═══════ */
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.25s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.25s ease-out forwards;
+}
